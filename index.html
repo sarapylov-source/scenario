@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ТОК-ШОУ «Франчайзинг по-русски» · Сценарии съёмок</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0a0a;--card:#161616;--card2:#1e1e1e;--red:#E63946;--white:#f0f0f0;--gray:#777;--green:#4caf50;--yellow:#f9a825;--blue:#42a5f5;--orange:#ff9800}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Manrope',sans-serif;background:var(--bg);color:var(--white);line-height:1.7}
+.container{max-width:1100px;margin:0 auto;padding:0 24px}
+section{padding:60px 0}
+h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.5rem,6vw,4.5rem);letter-spacing:2px;text-transform:uppercase;line-height:1}
+h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(1.8rem,4vw,2.8rem);letter-spacing:2px;text-transform:uppercase;margin-bottom:12px}
+h3{font-size:1.05rem;font-weight:800;margin-bottom:6px}
+.red{color:var(--red)}.green{color:var(--green)}.yellow{color:var(--yellow)}.blue{color:var(--blue)}.gray{color:var(--gray)}.orange{color:var(--orange)}
+.sub{color:var(--gray);font-size:1rem;max-width:700px;margin-bottom:32px}
+
+/* NAV */
+.nav-btn{position:fixed;top:20px;left:20px;z-index:1000;width:44px;height:44px;background:var(--card);border:1px solid rgba(255,255,255,0.1);border-radius:8px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .3s}
+.nav-btn:hover{border-color:var(--red)}
+.nav-btn span{display:block;width:20px;height:2px;background:var(--white);position:relative;transition:all .3s}
+.nav-btn span::before,.nav-btn span::after{content:'';position:absolute;width:20px;height:2px;background:var(--white);transition:all .3s}
+.nav-btn span::before{top:-6px}
+.nav-btn span::after{top:6px}
+.nav-btn.open span{background:transparent}
+.nav-btn.open span::before{transform:rotate(45deg);top:0}
+.nav-btn.open span::after{transform:rotate(-45deg);top:0}
+.sidebar{position:fixed;top:0;left:-320px;width:300px;height:100%;background:var(--card);z-index:999;transition:left .3s ease;overflow-y:auto;padding:80px 24px 40px;border-right:1px solid rgba(255,255,255,0.05)}
+.sidebar.open{left:0}
+.sidebar-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.6);z-index:998;opacity:0;pointer-events:none;transition:opacity .3s}
+.sidebar-overlay.open{opacity:1;pointer-events:all}
+.sidebar a{display:block;color:var(--gray);text-decoration:none;padding:12px 16px;font-size:0.9rem;border-left:2px solid transparent;transition:all .2s;margin-bottom:2px}
+.sidebar a:hover,.sidebar a.active{color:var(--white);border-left-color:var(--red);background:rgba(230,57,70,0.05)}
+.sidebar .nav-label{font-family:'Bebas Neue',sans-serif;font-size:0.75rem;letter-spacing:3px;color:var(--red);padding:16px 16px 4px;text-transform:uppercase}
+
+/* Hero */
+.hero{min-height:55vh;display:flex;align-items:center;border-bottom:3px solid var(--red);position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-30%;right:-15%;width:60vw;height:60vw;background:radial-gradient(circle,rgba(230,57,70,0.08),transparent 70%);pointer-events:none}
+.badge{display:inline-block;border:1px solid var(--red);color:var(--red);font-size:0.7rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;padding:5px 14px;margin-bottom:20px}
+.divider{height:2px;background:linear-gradient(90deg,var(--red),transparent)}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.card{background:var(--card);border:1px solid rgba(255,255,255,0.04);padding:24px;transition:border-color .3s}
+.card:hover{border-color:rgba(230,57,70,0.25)}
+
+/* Module cards */
+.mod-card{background:var(--card);border:1px solid rgba(255,255,255,0.04);padding:28px;margin-bottom:16px;position:relative;overflow:hidden}
+.mod-card:hover{border-color:rgba(230,57,70,0.3)}
+.mod-header{display:flex;align-items:center;gap:16px;margin-bottom:12px}
+.mod-time{font-family:'Bebas Neue',sans-serif;font-size:1.4rem;color:var(--red);min-width:55px}
+.mod-tag{font-size:0.65rem;text-transform:uppercase;letter-spacing:2px;font-weight:700;color:var(--red)}
+.mod-title{font-family:'Bebas Neue',sans-serif;font-size:1.3rem;color:var(--white);letter-spacing:1px;margin-bottom:10px;line-height:1.2}
+.mod-speakers{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px}
+.mod-spkr{background:var(--card2);padding:4px 10px;font-size:0.75rem;color:var(--gray);border:1px solid rgba(255,255,255,0.05)}
+.mod-spkr strong{color:var(--white)}
+.mod-badge-sold{display:inline-block;background:var(--red);color:var(--white);font-family:'Bebas Neue',sans-serif;font-size:0.6rem;letter-spacing:2px;padding:3px 10px;margin-left:8px}
+.mod-btn{display:inline-block;background:var(--red);color:var(--white);text-decoration:none;padding:10px 24px;font-family:'Bebas Neue',sans-serif;font-size:0.85rem;letter-spacing:2px;text-transform:uppercase;transition:all .3s}
+.mod-btn:hover{background:#c5303c;transform:translateY(-1px)}
+.mod-break{background:var(--card);border:1px dashed rgba(255,255,255,0.08);padding:14px 28px;margin-bottom:16px;display:flex;align-items:center;gap:16px}
+.mod-break-time{font-family:'Bebas Neue',sans-serif;font-size:1.2rem;color:var(--gray)}
+.mod-break-text{font-size:0.9rem;color:var(--gray)}
+
+/* Pos cards for memo */
+.pos-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:16px 0}
+.pos{padding:20px;border:1px solid rgba(255,255,255,0.05)}
+.pos-for{background:rgba(76,175,80,0.06);border-left:3px solid var(--green)}
+.pos-against{background:rgba(230,57,70,0.06);border-left:3px solid var(--red)}
+.pos-label{font-size:0.7rem;text-transform:uppercase;letter-spacing:2px;font-weight:700;margin-bottom:6px}
+
+.hook{background:var(--red);color:var(--white);padding:28px;margin:20px 0}
+.hook-label{font-family:'Bebas Neue',sans-serif;font-size:0.8rem;letter-spacing:4px;opacity:0.7;margin-bottom:8px}
+.hook-text{font-size:1.1rem;font-weight:700;line-height:1.5}
+
+@media(max-width:768px){.grid-2,.grid-3,.pos-grid{grid-template-columns:1fr}.mod-header{flex-wrap:wrap}}
+.fade{opacity:0;transform:translateY(25px);transition:all 0.7s ease}
+.fade.vis{opacity:1;transform:translateY(0)}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<div class="nav-btn" onclick="toggleNav()"><span></span></div>
+<div class="sidebar" id="sidebar">
+  <div class="nav-label">Навигация</div>
+  <a href="index.html" class="active">🏠 Главная</a>
+  <div class="nav-label">Сценарии модулей</div>
+  <a href="m2.html">Модуль 2 · Ресторанный франчайзинг</a>
+  <a href="m3.html">Модуль 3 · Маркетинг и продажи</a>
+  <a href="m4.html">Модуль 4 · Упаковка франшизы</a>
+  <a href="m5.html">Модуль 5 · Будущее франчайзинга</a>
+  <div class="nav-label" style="margin-top:24px;">Контакты</div>
+  <a href="https://t.me/frguru" target="_blank">✏️ Предложения по сценарию → @frguru</a>
+  <a href="https://t.me/Yes_Yasya" target="_blank">📞 Менеджер → @Yes_Yasya</a>
+</div>
+<div class="sidebar-overlay" id="overlay" onclick="toggleNav()"></div>
+
+<!-- HERO -->
+<section class="hero">
+<div class="container">
+  <div class="badge">Сценарии съёмок · 15 марта 2026</div>
+  <h1>Ток-шоу<br><span class="red">Франчайзинг<br>по-русски</span></h1>
+  <p style="font-size:1.1rem;color:var(--gray);margin-top:16px;max-width:600px;">Лофт Frame · Москва, Болотная наб., 3, стр. 4, 2 этаж</p>
+</div>
+</section>
+
+<!-- ============================== -->
+<!-- SCHEDULE -->
+<!-- ============================== -->
+<div class="divider"></div>
+<section>
+<div class="container">
+  <h2 class="fade">Расписание <span class="red">модулей</span></h2>
+  <p class="sub fade">5 дискуссионных модулей, 20+ экспертов на сцене, профессиональная многокамерная съёмка</p>
+
+  <!-- 10:30 -->
+  <div class="mod-break fade">
+    <span class="mod-break-time">10:30</span>
+    <span class="mod-break-text">☕ Сбор гостей, кофе, знакомства</span>
+  </div>
+
+  <!-- Module 1 -->
+  <div class="mod-card fade">
+    <div class="mod-header">
+      <span class="mod-time">11:00</span>
+      <span class="mod-tag">Модуль 1 · Дискуссия</span>
+    </div>
+    <div class="mod-title">Юридические и налоговые изменения в 2026 году</div>
+    <div class="mod-speakers">
+      <div class="mod-spkr"><strong>Игорь Анфалов</strong> · Lumos Partners</div>
+      <div class="mod-spkr"><strong>Иван Суворов</strong> · Lumos Partners</div>
+      <div class="mod-spkr"><strong>Альбина Чукова</strong> · Совет Лигал</div>
+      <div class="mod-spkr" style="border-color:var(--red);color:var(--red);">+ 1 место</div>
+    </div>
+  </div>
+
+  <!-- Module 2 -->
+  <div class="mod-card fade">
+    <div class="mod-header">
+      <span class="mod-time">12:15</span>
+      <span class="mod-tag">Модуль 2 · Дискуссия</span>
+      <span class="mod-badge-sold">МЕСТ НЕТ</span>
+    </div>
+    <div class="mod-title">Ресторанный франчайзинг в 2026 году</div>
+    <div class="mod-speakers">
+      <div class="mod-spkr"><strong>Александр Назаров</strong> · ex-My Box</div>
+      <div class="mod-spkr"><strong>Алёна Овчинникова</strong> · ex-GaGawa</div>
+      <div class="mod-spkr"><strong>Vasilchuki</strong> · Restaurant Group</div>
+      <div class="mod-spkr"><strong>Владислав Редкин</strong> · кофейни «Здрасте»</div>
+    </div>
+    <a href="m2.html" class="mod-btn">Сценарий модуля →</a>
+  </div>
+
+  <!-- Lunch -->
+  <div class="mod-break fade">
+    <span class="mod-break-time">13:15</span>
+    <span class="mod-break-text">🍽️ Обед</span>
+  </div>
+
+  <!-- Module 3 -->
+  <div class="mod-card fade">
+    <div class="mod-header">
+      <span class="mod-time">14:15</span>
+      <span class="mod-tag">Модуль 3 · Дискуссия</span>
+      <span class="mod-badge-sold">МЕСТ НЕТ</span>
+    </div>
+    <div class="mod-title">Маркетинг, трафик и продажи франшиз</div>
+    <div class="mod-speakers">
+      <div class="mod-spkr"><strong>Ярослав Осинцев</strong> · маркетинговое агентство</div>
+      <div class="mod-spkr"><strong>Александр Долгов</strong> · 20x80</div>
+      <div class="mod-spkr"><strong>Артур Зарипов</strong> · BIORISE</div>
+      <div class="mod-spkr"><strong>Екатерина Кабанова</strong> · отделы продаж</div>
+    </div>
+    <a href="m3.html" class="mod-btn">Сценарий модуля →</a>
+  </div>
+
+  <!-- Module 4 -->
+  <div class="mod-card fade">
+    <div class="mod-header">
+      <span class="mod-time">15:30</span>
+      <span class="mod-tag">Модуль 4 · Дискуссия</span>
+      <span class="mod-badge-sold">МЕСТ НЕТ</span>
+    </div>
+    <div class="mod-title">Упаковка франшизы: внешний лоск vs внутренние процессы</div>
+    <div class="mod-speakers">
+      <div class="mod-spkr"><strong>Денис Блохин</strong> · Junior Projects</div>
+      <div class="mod-spkr"><strong>Женя Опутин</strong> · Vagabond, ex-Dodo</div>
+      <div class="mod-spkr"><strong>Анна Харитонова</strong> · Лидер Франшиз</div>
+      <div class="mod-spkr"><strong>Михаил Воробьёв</strong> · Место Пряток</div>
+    </div>
+    <a href="m4.html" class="mod-btn">Сценарий модуля →</a>
+  </div>
+
+  <!-- Module 5 -->
+  <div class="mod-card fade" style="border-color:rgba(230,57,70,0.2);">
+    <div class="mod-header">
+      <span class="mod-time">16:45</span>
+      <span class="mod-tag">Модуль 5 · Дискуссия</span>
+    </div>
+    <div class="mod-title">🔥 Будущее франчайзинга в России: риски, угрозы и возможности</div>
+    <div class="mod-speakers">
+      <div class="mod-spkr"><strong>Ильназ Набиуллин</strong> · Чио Чио, 1000+ точек</div>
+      <div class="mod-spkr"><strong>Анастасия Мансурова</strong> · SMM во франшизах</div>
+      <div class="mod-spkr" style="border-color:var(--red);color:var(--red);">+ 2 места</div>
+    </div>
+    <a href="m5.html" class="mod-btn">Сценарий модуля →</a>
+  </div>
+
+  <!-- Finale -->
+  <div class="mod-break fade">
+    <span class="mod-break-time">18:00</span>
+    <span class="mod-break-text">🥂 Финал, нетворкинг, фуршет</span>
+  </div>
+</div>
+</section>
+
+<!-- ============================== -->
+<!-- MEMO -->
+<!-- ============================== -->
+<div class="divider"></div>
+<section style="background:var(--card);">
+<div class="container">
+  <h2 class="fade">📋 Памятка <span class="red">участникам</span></h2>
+  <p class="sub fade">Организационные моменты для всех спикеров</p>
+
+  <div class="grid-2 fade">
+    <div class="card" style="border-top:3px solid var(--yellow);">
+      <div style="font-size:2rem;margin-bottom:12px;">⏰</div>
+      <h3 style="color:var(--yellow);">Время и прибытие</h3>
+      <p style="font-size:0.95rem;color:var(--gray);line-height:1.7;margin-top:8px;">
+        <strong style="color:var(--white);">На площадке нужно быть минимум за 1 час до начала вашего модуля.</strong><br><br>
+        Это Болотная набережная, центр Москвы — пробки гарантированы. Лучше приехать раньше, выпить кофе, отдышаться и спокойно настроиться, чем влетать запыхавшимся за 2 минуты до старта.
+      </p>
+    </div>
+    <div class="card" style="border-top:3px solid var(--blue);">
+      <div style="font-size:2rem;margin-bottom:12px;">👔</div>
+      <h3 style="color:var(--blue);">Как одеться</h3>
+      <p style="font-size:0.95rem;color:var(--gray);line-height:1.7;margin-top:8px;">
+        <strong style="color:var(--white);">Smart casual.</strong> Пиджак + футболка, рубашка без галстука, платье — что-то комфортное и хорошо смотрится в кадре.<br><br>
+        <strong style="color:var(--red);">Избегайте:</strong> мелких полосок и клетки (мерцает), полностью белого/чёрного (сливается), крупных логотипов.<br><br>
+        <strong style="color:var(--red);">Гримёров нет.</strong> Всё необходимое для макияжа берите с собой.
+      </p>
+    </div>
+  </div>
+
+  <div class="card fade" style="border-left:4px solid var(--orange);margin-top:20px;">
+    <div style="display:flex;gap:16px;align-items:flex-start;">
+      <div style="font-size:2rem;flex-shrink:0;">📍</div>
+      <div>
+        <h3 style="color:var(--orange);">Адрес площадки</h3>
+        <p style="font-size:1rem;color:var(--white);margin-top:4px;"><strong>Лофт Frame</strong> — Москва, Болотная наб., 3, стр. 4, 2 этаж</p>
+        <p style="font-size:0.85rem;color:var(--gray);margin-top:4px;">Вход со стороны набережной. Указатели на месте. Менеджер: <a href="https://t.me/Yes_Yasya" style="color:var(--red);">@Yes_Yasya</a></p>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ============================== -->
+<!-- CREATIVE APPROACH -->
+<!-- ============================== -->
+<div class="divider"></div>
+<section>
+<div class="container">
+  <h2 class="fade">🎬 Наша цель на <span class="red">съёмках</span></h2>
+  <p class="sub fade">Не конференция. Не лекция. Контент, который будут смотреть и пересылать.</p>
+
+  <div class="hook fade">
+    <div class="hook-label">ГЛАВНАЯ МЫСЛЬ</div>
+    <div class="hook-text">Мы здесь чтобы создать крутой, цепляющий контент для ваших соцсетей и соцсетей сообщества. Это не формальная дискуссия — это шоу. Конфликт мнений = интересный контент.</div>
+  </div>
+
+  <div class="grid-3 fade" style="margin-top:24px;">
+    <div class="card" style="border-top:3px solid var(--green);text-align:center;">
+      <div style="font-size:2.5rem;margin-bottom:12px;">⚡</div>
+      <h3 style="color:var(--green);">Спорьте</h3>
+      <p style="font-size:0.9rem;color:var(--gray);">Если все кивают — никому не интересно. Другое мнение — говорите.</p>
+    </div>
+    <div class="card" style="border-top:3px solid var(--yellow);text-align:center;">
+      <div style="font-size:2.5rem;margin-bottom:12px;">📊</div>
+      <h3 style="color:var(--yellow);">Конкретика</h3>
+      <p style="font-size:0.9rem;color:var(--gray);">Цифры, кейсы, истории. Готовьте 2-3 примера из практики.</p>
+    </div>
+    <div class="card" style="border-top:3px solid var(--red);text-align:center;">
+      <div style="font-size:2.5rem;margin-bottom:12px;">🎭</div>
+      <h3 style="color:var(--red);">Эмоции</h3>
+      <p style="font-size:0.9rem;color:var(--gray);">Камера снимает и когда не вы говорите. Реагируйте.</p>
+    </div>
+  </div>
+
+  <div class="pos-grid fade" style="margin-top:24px;">
+    <div class="pos pos-against" style="text-align:center;">
+      <div class="pos-label" style="color:var(--red);">❌ ТАК НЕ НАДО</div>
+      <p style="font-size:0.95rem;color:var(--gray);margin-top:8px;">
+        «Я полностью согласен...»<br>«Сложно сказать...»<br>«Рынок развивается...»<br>
+        <em style="font-size:0.8rem;">— скучно, забудут</em>
+      </p>
+    </div>
+    <div class="pos pos-for" style="text-align:center;">
+      <div class="pos-label" style="color:var(--green);">✅ ВОТ ЭТО ОГОНЬ</div>
+      <p style="font-size:0.95rem;color:var(--gray);margin-top:8px;">
+        «Категорически не согласен — вот почему...»<br>«Мы потратили 2 млн и получили ноль»<br>«Скажу непопулярную вещь...»<br>
+        <em style="font-size:0.8rem;">— живо, запоминается</em>
+      </p>
+    </div>
+  </div>
+
+  <div class="card fade" style="border-left:4px solid var(--blue);margin-top:24px;">
+    <h3 style="color:var(--blue);">Что вы получите</h3>
+    <p style="font-size:0.95rem;color:var(--gray);margin-top:8px;">Полный смонтированный материал + 10 вертикальных Reels. Дистрибуция в каналах сообщества 6 месяцев. Чем ярче вы в кадре — тем больше охвата.</p>
+  </div>
+
+  <div class="card fade" style="border-left:4px solid var(--green);margin-top:16px;">
+    <h3 style="color:var(--green);">Есть пожелания по сценарию?</h3>
+    <p style="font-size:0.95rem;color:var(--gray);margin-top:8px;">Если у вас есть предложения, идеи или комментарии — пишите <a href="https://t.me/frguru" style="color:var(--red);font-weight:700;">@frguru</a> в Telegram.</p>
+  </div>
+</div>
+</section>
+
+<footer style="padding:40px 0;text-align:center;border-top:1px solid rgba(255,255,255,0.05);">
+  <p style="font-size:0.8rem;color:var(--gray);">ТОК-ШОУ «Франчайзинг по-русски» · 15 марта 2026 · Лофт Frame, Москва</p>
+</footer>
+
+<script>
+function toggleNav(){
+  document.getElementById('sidebar').classList.toggle('open');
+  document.getElementById('overlay').classList.toggle('open');
+  document.querySelector('.nav-btn').classList.toggle('open');
+}
+const obs=new IntersectionObserver(e=>{e.forEach(el=>{if(el.isIntersecting)el.target.classList.add('vis')})},{threshold:0.12});
+document.querySelectorAll('.fade').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>

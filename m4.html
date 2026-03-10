@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Модуль 4 · Сценарий · Упаковка франшизы</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0a0a;--card:#161616;--card2:#1e1e1e;--red:#E63946;--white:#f0f0f0;--gray:#777;--green:#4caf50;--yellow:#f9a825;--blue:#42a5f5;--orange:#ff9800;--purple:#ab47bc}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Manrope',sans-serif;background:var(--bg);color:var(--white);line-height:1.7}
+.container{max-width:1100px;margin:0 auto;padding:0 24px}
+section{padding:60px 0}
+h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.5rem,6vw,4.5rem);letter-spacing:2px;text-transform:uppercase;line-height:1}
+h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(1.8rem,4vw,3rem);letter-spacing:2px;text-transform:uppercase;margin-bottom:12px}
+h3{font-size:1.05rem;font-weight:800;margin-bottom:6px}
+.red{color:var(--red)}.green{color:var(--green)}.yellow{color:var(--yellow)}.blue{color:var(--blue)}.gray{color:var(--gray)}.orange{color:var(--orange)}.purple{color:var(--purple)}
+.sub{color:var(--gray);font-size:1rem;max-width:700px;margin-bottom:32px}
+.src{font-size:0.7rem;color:var(--gray);font-style:italic;margin-top:6px}
+.hero{min-height:50vh;display:flex;align-items:center;border-bottom:3px solid var(--red);position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-30%;right:-15%;width:60vw;height:60vw;background:radial-gradient(circle,rgba(230,57,70,0.08),transparent 70%);pointer-events:none}
+.badge{display:inline-block;border:1px solid var(--red);color:var(--red);font-size:0.7rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;padding:5px 14px;margin-bottom:20px}
+.hook{background:var(--red);color:var(--white);padding:32px;margin:24px 0;position:relative}
+.hook::before{content:'🪝';position:absolute;top:16px;right:20px;font-size:2rem;opacity:0.3}
+.hook-label{font-family:'Bebas Neue',sans-serif;font-size:0.8rem;letter-spacing:4px;opacity:0.7;margin-bottom:8px}
+.hook-text{font-size:1.15rem;font-weight:700;line-height:1.5}
+.mod{background:var(--card2);border-left:3px solid var(--orange);padding:20px 24px;margin:16px 0;font-size:0.95rem}
+.mod::before{content:'🎤 МОДЕРАТОР';font-family:'Bebas Neue',sans-serif;font-size:0.7rem;letter-spacing:3px;color:var(--orange);display:block;margin-bottom:6px}
+.mod em{color:var(--orange);font-style:normal;font-weight:700}
+.pos-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:16px 0}
+.pos{padding:20px;border:1px solid rgba(255,255,255,0.05)}
+.pos-for{background:rgba(76,175,80,0.06);border-left:3px solid var(--green)}
+.pos-against{background:rgba(230,57,70,0.06);border-left:3px solid var(--red)}
+.pos-label{font-size:0.7rem;text-transform:uppercase;letter-spacing:2px;font-weight:700;margin-bottom:6px}
+.pos-text{font-size:0.9rem;color:var(--gray);line-height:1.6}
+.q{display:flex;gap:12px;padding:10px 0;align-items:flex-start}
+.q-arrow{color:var(--red);font-weight:700;font-size:1.1rem;flex-shrink:0;margin-top:2px}
+.q-text{font-size:0.95rem}
+.note{font-size:0.85rem;color:var(--gray);font-style:italic;padding:8px 0 8px 24px;border-left:2px solid rgba(255,255,255,0.08);margin:8px 0}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px;margin:20px 0}
+.stat{background:var(--card);padding:20px;border-left:3px solid var(--red)}
+.stat-n{font-family:'Bebas Neue',sans-serif;font-size:2.2rem;color:var(--red);line-height:1}
+.stat-l{font-size:0.8rem;color:var(--gray);margin-top:4px}
+.flow{display:flex;align-items:center;gap:0;margin:20px 0;flex-wrap:wrap}
+.flow-s{background:var(--card);padding:14px 16px;text-align:center;flex:1;min-width:120px}
+.flow-s .fn{font-family:'Bebas Neue',sans-serif;font-size:1.4rem;color:var(--red)}
+.flow-s .ft{font-size:0.75rem;color:var(--gray)}
+.flow-a{font-size:1.2rem;color:var(--red);padding:0 4px}
+.divider{height:2px;background:linear-gradient(90deg,var(--red),transparent)}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.card{background:var(--card);border:1px solid rgba(255,255,255,0.04);padding:24px}
+.callout{background:var(--card);border-left:4px solid var(--red);padding:20px 24px;margin:20px 0}
+.speakers{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+.spkr{background:var(--card2);padding:6px 14px;font-size:0.8rem;color:var(--gray);border:1px solid rgba(255,255,255,0.05)}
+.spkr strong{color:var(--white)}
+.tl{position:relative;padding-left:80px}
+.tl::before{content:'';position:absolute;left:35px;top:0;bottom:0;width:2px;background:linear-gradient(180deg,var(--red),var(--card))}
+.tl-item{margin-bottom:40px;position:relative}
+.tl-time{position:absolute;left:-80px;top:2px;width:65px;font-family:'Bebas Neue',sans-serif;font-size:1.1rem;color:var(--red);text-align:right;letter-spacing:1px}
+.tl-dot{position:absolute;left:-49px;top:6px;width:12px;height:12px;border-radius:50%;border:2px solid var(--red);background:var(--bg)}
+.tl-card{background:var(--card);border:1px solid rgba(255,255,255,0.04);padding:24px 28px}
+.tl-tag{font-size:0.65rem;text-transform:uppercase;letter-spacing:3px;font-weight:700;margin-bottom:6px}
+.tl-title{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;color:var(--white);letter-spacing:1px;margin-bottom:10px;line-height:1.1}
+@media(max-width:768px){.grid-2,.grid-3,.pos-grid{grid-template-columns:1fr}.tl{padding-left:60px}.tl-time{left:-60px;width:50px;font-size:0.9rem}.tl-dot{left:-29px}.flow{flex-direction:column}.flow-a{transform:rotate(90deg)}}
+.fade{opacity:0;transform:translateY(25px);transition:all 0.7s ease}
+.fade.vis{opacity:1;transform:translateY(0)}
+/* NAV */
+.nav-btn{position:fixed;top:20px;left:20px;z-index:1000;width:44px;height:44px;background:var(--card);border:1px solid rgba(255,255,255,0.1);border-radius:8px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .3s}
+.nav-btn:hover{border-color:var(--red)}
+.nav-btn span{display:block;width:20px;height:2px;background:var(--white);position:relative;transition:all .3s}
+.nav-btn span::before,.nav-btn span::after{content:'';position:absolute;width:20px;height:2px;background:var(--white);transition:all .3s}
+.nav-btn span::before{top:-6px}
+.nav-btn span::after{top:6px}
+.nav-btn.open span{background:transparent}
+.nav-btn.open span::before{transform:rotate(45deg);top:0}
+.nav-btn.open span::after{transform:rotate(-45deg);top:0}
+.sidebar{position:fixed;top:0;left:-320px;width:300px;height:100%;background:var(--card);z-index:999;transition:left .3s ease;overflow-y:auto;padding:80px 24px 40px;border-right:1px solid rgba(255,255,255,0.05)}
+.sidebar.open{left:0}
+.sidebar-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.6);z-index:998;opacity:0;pointer-events:none;transition:opacity .3s}
+.sidebar-overlay.open{opacity:1;pointer-events:all}
+.sidebar a{display:block;color:var(--gray);text-decoration:none;padding:12px 16px;font-size:0.9rem;border-left:2px solid transparent;transition:all .2s;margin-bottom:2px}
+.sidebar a:hover,.sidebar a.active{color:var(--white);border-left-color:var(--red);background:rgba(230,57,70,0.05)}
+.sidebar .nav-label{font-family:'Bebas Neue',sans-serif;font-size:0.75rem;letter-spacing:3px;color:var(--red);padding:16px 16px 4px;text-transform:uppercase}
+
+</style>
+</head>
+<body>
+<div class="nav-btn" onclick="toggleNav()"><span></span></div>
+<div class="sidebar" id="sidebar">
+<div class="nav-label">Навигация</div>
+<a href="index.html">🏠 Главная</a>
+<div class="nav-label">Сценарии</div>
+<a href="m2.html">Модуль 2 · Рестораны</a>
+<a href="m3.html">Модуль 3 · Маркетинг</a>
+<a href="m4.html" class="active">Модуль 4 · Упаковка</a>
+<a href="m5.html">Модуль 5 · Будущее</a>
+<div class="nav-label" style="margin-top:24px;">Контакты</div>
+<a href="https://t.me/frguru" target="_blank">✏️ Предложения → @frguru</a>
+<a href="https://t.me/Yes_Yasya" target="_blank">📞 Менеджер → @Yes_Yasya</a>
+</div>
+<div class="sidebar-overlay" id="overlay" onclick="toggleNav()"></div>
+
+<!-- HERO -->
+<section class="hero">
+<div class="container">
+  <div class="badge">Сценарий модуля 4 · 60 минут · 15 марта 2026</div>
+  <h1>Упаковка<br><span class="red">франшизы</span></h1>
+  <p style="font-size:1.1rem;color:var(--gray);margin-top:16px;max-width:550px;">Внешний лоск vs внутренние процессы. Что на самом деле покупает франчайзи и за что стоит платить.</p>
+  <div class="speakers" style="margin-top:24px;">
+    <div class="spkr"><strong>Денис Блохин</strong> · Junior Projects</div>
+    <div class="spkr"><strong>Женя Опутин</strong> · Vagabond Agency, ex-Dodo</div>
+    <div class="spkr"><strong>Анна Харитонова</strong> · Лидер Франшиз</div>
+    <div class="spkr"><strong>Михаил Воробьёв</strong> · Место Пряток</div>
+  </div>
+</div>
+</section>
+
+<!-- ============================== -->
+<!-- OPENING: 0:00 – 5:00 -->
+<!-- ============================== -->
+<div class="divider"></div>
+<section>
+<div class="container">
+  <h2 class="fade">Открытие · <span class="red">0:00 – 5:00</span></h2>
+  <p class="sub fade">Три шага мощного открытия: Hook → Meat → Lineup</p>
+
+  <div class="fade">
+    <div style="font-family:'Bebas Neue',sans-serif;font-size:0.8rem;letter-spacing:4px;color:var(--yellow);margin-bottom:8px;">ШАГ 1 · КРЮЧОК 🪝</div>
+    <div class="hook">
+      <div class="hook-label">Модератор произносит без представления, сразу:</div>
+      <div class="hook-text">«В 2024 году на российский рынок вышло 500 новых франшиз — рекордное число. При этом в 2025-м количество сделок упало впервые за 6 лет. 80% франчайзеров столкнулись с волной чёрных отзывов. Вопрос: может быть, рынок просто наелся красивых презентаций без содержания?»</div>
+    </div>
+    <div class="note">Пауза 3 секунды. Камера на спикеров — кто кивает, кто не согласен.</div>
+  </div>
+
+  <div class="fade" style="margin-top:32px;">
+    <div style="font-family:'Bebas Neue',sans-serif;font-size:0.8rem;letter-spacing:4px;color:var(--blue);margin-bottom:8px;">ШАГ 2 · СУТЬ 🥩</div>
+    <div class="mod">
+      «Следующий час мы разберём, что стоит за словом "упаковка" на самом деле. Три темы: <em>красивая обёртка vs реальные процессы</em> — почему одни франшизы продаются, но не работают, а другие работают, но не продаются. <em>Обучение и сопровождение</em> — что франчайзи реально получает после оплаты. И <em>цифровая экосистема</em> — почему франшиза будущего это не коробка документов, а подключение к живой системе.»
+    </div>
+  </div>
+
+  <div class="fade" style="margin-top:32px;">
+    <div style="font-family:'Bebas Neue',sans-serif;font-size:0.8rem;letter-spacing:4px;color:var(--green);margin-bottom:8px;">ШАГ 3 · ПРЕДСТАВЛЕНИЕ 🎤</div>
+    <div class="mod">
+      «Со мной люди, которые упаковывают и разбирают франшизы на части каждый день. <em>Женя Опутин</em> — прошёл Dodo Brands, видел как устроена одна из лучших франшиз в стране изнутри. <em>Анна Харитонова</em> — компания "Лидер Франшиз", упаковывает бизнесы и знает, чем хорошая упаковка отличается от инфоцыганской. <em>Денис Блохин</em> — Junior Projects, строит управляющие компании и знает цену каждому процессу. И <em>Михаил Воробьёв</em> — упаковал франшизу "Место Пряток" в развлекательной нише, где правила игры совсем другие. Денис, первый вопрос тебе.»
+    </div>
+    <div class="note">Каждого — через конкретный опыт, не через регалии. 40-60 секунд на всё представление.</div>
+  </div>
+</div>
+</section>
+
+<!-- ============================== -->
+<!-- BLOCK 1: ОБЁРТКА VS ПРОЦЕССЫ -->
+<!-- ============================== -->
+<div class="divider"></div>
+<section>
+<div class="container">
+  <h2 class="fade">Блок 1 · <span class="red">Обёртка vs процессы</span></h2>
+  <p style="font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:3px;color:var(--gray);">5:00 – 20:00 · 15 МИНУТ</p>
+
+  <div class="stats fade" style="margin-top:24px;">
+    <div class="stat"><div class="stat-n">500+</div><div class="stat-l">Новых франшиз вышло на рынок в 2024</div></div>
+    <div class="stat"><div class="stat-n">−5%</div><div class="stat-l">Спад сделок в 2025 — впервые с 2019</div></div>
+    <div class="stat"><div class="stat-n">3 860</div><div class="stat-l">Активных франшиз в РФ, 93% — отечественные</div></div>
+    <div class="stat"><div class="stat-n">300К–1М ₽</div><div class="stat-l">Стоимость упаковки франшизы</div></div>
+  </div>
+
+  <div class="hook fade">
+    <div class="hook-label">ХУК ДЛЯ ВХОДА В ТЕМУ</div>
+    <div class="hook-text">«Денис, вопрос в лоб. Упаковка франшизы стоит от 300 тысяч до миллиона. За эти деньги ты получаешь брендбук, франчайзи-бук, сайт, презентацию, финмодель. Выглядит красиво. Но вот проблема: инфоцыганские франшизы часто упакованы лучше реальных. Почему?»</div>
+  </div>
+
+  <div class="fade">
+    <div class="q"><span class="q-arrow">→</span><span class="q-text">Что важнее для первых продаж: красивая презентация или работающие собственные точки?</span></div>
+    <div class="q"><span class="q-arrow">→</span><span class="q-text">Анна, ты упаковываешь франшизы — сколько из твоих клиентов реально имеют отлаженные процессы до прихода к тебе?</span></div>
+    <div class="q"><span class="q-arrow">→</span><span class="q-text">Женя, в Dodo процессы — это религия. Можно ли масштабировать бизнес, где процессы не оцифрованы?</span></div>
+  </div>
+
+  <h3 class="fade" style="margin-top:24px;">Точки конфликта</h3>
+  <div class="pos-grid fade">
+    <div class="pos pos-for">
+      <div class="pos-label green">Позиция «Сначала продай — потом допили»</div>
+      <p style="font-weight:700;color:var(--white);margin-bottom:6px;">«Идеальных процессов не существует до масштаба»</p>
+      <p class="pos-text">Нельзя сидеть годами и оттачивать процессы. Первые франчайзи и есть тест-группа. Запусти, получи обратную связь, допили. Перфекционизм убивает больше франшиз, чем плохая упаковка.</p>
+      <p class="src">Вероятный сторонник: Воробьёв (практик, упаковывал «на ходу»)</p>
+    </div>
+    <div class="pos pos-against">
+      <div class="pos-label red">Позиция «Без процессов — это мошенничество»</div>
+      <p style="font-weight:700;color:var(--white);margin-bottom:6px;">«Продавать то, что не работает — это обман»</p>
+      <p class="pos-text">Франчайзи платит за готовую систему. Если её нет — это эксперимент за чужие деньги. Сначала докажи на своих точках, потом продавай. Иначе ты ничем не отличаешься от инфоцыган.</p>
+      <p class="src">Вероятный сторонник: Опутин (опыт Dodo, где процессы — основа)</p>
+    </div>
+  </div>
+
+  <div class="callout fade">
+    <strong>Провокация для обострения:</strong> «Михаил, давай честно. Когда ты продавал первую франшизу "Место Пряток" — у тебя были все процессы описаны или ты допиливал уже после продажи? И если допиливал — франчайзи об этом знал?»
+  </div>
+
+  <div class="mod fade">
+    <em>Переход:</em> «Хорошо, допустим франшиза продана — деньги получены. А дальше что? Что реально получает франчайзи на следующий день после оплаты?»
+  </div>
+</div>
+</section>
+
+<!-- ============================== -->
+<!-- BLOCK 2: ОБУЧЕНИЕ И СОПРОВОЖДЕНИЕ -->
+<!-- ============================== -->
+<div class="divider"></div>
+<section>
+<div class="container">
+  <h2 class="fade">Блок 2 · <span class="red">Обучение и контроль</span></h2>
+  <p style="font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:3px;color:var(--gray);">20:00 – 35:00 · 15 МИНУТ</p>
+
+  <div class="flow fade" style="margin-top:24px;">
+    <div class="flow-s"><div class="fn">💰</div><div class="ft">Франчайзи платит</div></div>
+    <div class="flow-a">→</div>
+    <div class="flow-s"><div class="fn">📦</div><div class="ft">Получает «коробку»</div></div>
+    <div class="flow-a">→</div>
+    <div class="flow-s"><div class="fn">❓</div><div class="ft">А дальше?</div></div>
+    <div class="flow-a">→</div>
+    <div class="flow-s" style="border-top:3px solid var(--green);"><div class="fn" style="color:var(--green);">🏗️</div><div class="ft">Полноценная поддержка</div></div>
+    <div class="flow-s" style="border-top:3px solid var(--red);"><div class="fn" style="color:var(--red);">📵</div><div class="ft">Номер телефона менеджера</div></div>
+  </div>
+
+  <div class="hook fade">
+    <div class="hook-label">ХУК ДЛЯ ВХОДА В ТЕМУ</div>
+    <div class="hook-text">«Анна, скажи мне вот что. Я покупаю франшизу. Мне присылают франчайзи-бук на 60 страниц, регламенты, скрипты. Красиво. Но через три месяца у меня кассовый разрыв, персонал разбежался, а на мои звонки в УК отвечает бот. Это типичная история — или я утрирую?»</div>
+  </div>
+
+  <div class="fade">
+    <div class="q"><span class="q-arrow">→</span><span class="q-text">Что конкретно должно входить в сопровождение — минимальный набор, без которого это не франшиза?</span></div>
+    <div class="q"><span class="q-arrow">→</span><span class="q-text">Выезд команды УК к франчайзи — золотой стандарт или непозволительная роскошь?</span></div>
+    <div class="q"><span class="q-arrow">→</span><span class="q-text">Жёсткий контроль со стороны франчайзера — это забота или удушение бизнеса партнёра?</span></div>
+  </div>
+
+  <h3 class="fade" style="margin-top:24px;">Точки конфликта</h3>
+  <div class="pos-grid fade">
+    <div class="pos pos-for">
+      <div class="pos-label green">Позиция «Жёсткий контроль = стабильность»</div>
+      <p style="font-weight:700;color:var(--white);margin-bottom:6px;">«Дай франчайзи свободу — он убьёт бренд»</p>
+      <p class="pos-text">Чек-листы, аудиты, тайные покупатели, обязательная аттестация. Если ты не контролируешь — ты не управляешь. Одна плохая точка валит репутацию всей сети. Франчайзи купил систему — пусть работает в системе.</p>
+      <p class="src">Вероятный сторонник: Опутин (Dodo-школа управления)</p>
+    </div>
+    <div class="pos pos-against">
+      <div class="pos-label red">Позиция «Партнёр — не сотрудник»</div>
+      <p style="font-weight:700;color:var(--white);margin-bottom:6px;">«Франчайзи — предприниматель, не исполнитель»</p>
+      <p class="pos-text">Чрезмерный контроль убивает инициативу. Лучшие идеи часто приходят от франчайзи на местах. Нужны рамки и KPI, но внутри них — свобода. Иначе проще нанять управляющего, а не продавать франшизу.</p>
+      <p class="src">Вероятный сторонник: Блохин (опыт построения УК)</p>
+    </div>
+  </div>
+
+  <div class="callout fade">
+    <strong>Провокация:</strong> «Денис, давай посчитаем. Франчайзи платит роялти 5-7% от выручки каждый месяц. За что конкретно? Можешь перечислить на пальцах — что он получает за эти деньги? И честно: в большинстве франшиз роялти — это плата за бренд или за реальную поддержку?»
+  </div>
+
+  <div class="mod fade">
+    <em>Переход:</em> «Мы поговорили о том что было и что есть. Теперь давайте о том что будет. Потому что рынок сейчас на переломе — и те кто не перестроятся, через два года закроются.»
+  </div>
+</div>
+</section>
+
+<!-- ============================== -->
+<!-- BLOCK 3: ЦИФРОВАЯ ЭКОСИСТЕМА -->
+<!-- ============================== -->
+<div class="divider"></div>
+<section>
+<div class="container">
+  <h2 class="fade">Блок 3 · <span class="red">Франшиза будущего</span></h2>
+  <p style="font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:3px;color:var(--gray);">35:00 – 50:00 · 15 МИНУТ</p>
+
+  <div class="stats fade" style="margin-top:24px;">
+    <div class="stat"><div class="stat-n">80%</div><div class="stat-l">Франчайзеров столкнулись с чёрными отзывами</div></div>
+    <div class="stat"><div class="stat-n">6.4 лет</div><div class="stat-l">Средний возраст франшизы — рынок «взрослеет»</div></div>
+    <div class="stat"><div class="stat-n">90%+</div><div class="stat-l">Франчайзеров успешно открыли новые точки в 2025</div></div>
+  </div>
+
+  <div class="hook fade">
+    <div class="hook-label">ХУК ДЛЯ ВХОДА В ТЕМУ</div>
+    <div class="hook-text">«Dodo Pizza продаёт не франшизу — они продают подключение к экосистеме. CRM, ERP, дашборд в реальном времени, обучающая платформа. Франчайзер видит выручку каждой точки онлайн. Вопрос: это будущее для всех — или привилегия компаний с бюджетом в миллиарды?»</div>
+  </div>
+
+  <div class="fade">
+    <div class="q"><span class="q-arrow">→</span><span class="q-text">Женя, ты видел Dodo изнутри. Что из их IT-системы можно воспроизвести за разумные деньги, а что нет?</span></div>
+    <div class="q"><span class="q-arrow">→</span><span class="q-text">AI в управлении франшизой — хайп или реальный инструмент уже сейчас?</span></div>
+    <div class="q"><span class="q-arrow">→</span><span class="q-text">Чёрные отзывы — 80% франчайзеров с ними столкнулись. Как управлять репутацией сети, когда любой обиженный франчайзи может уничтожить бренд за вечер?</span></div>
+  </div>
+
+  <h3 class="fade" style="margin-top:24px;">Точки конфликта</h3>
+  <div class="pos-grid fade">
+    <div class="pos pos-for">
+      <div class="pos-label green">Позиция «Без IT нет франшизы»</div>
+      <p style="font-weight:700;color:var(--white);margin-bottom:6px;">«Коробка документов мертва»</p>
+      <p class="pos-text">Франшиза будущего — это экосистема: CRM, обучающая платформа, дашборд, автоматизация. Франчайзер, который не инвестирует в IT, через 3 года потеряет конкурентоспособность. Это не опция — это выживание.</p>
+      <p class="src">Вероятный сторонник: Опутин (технологический бэкграунд)</p>
+    </div>
+    <div class="pos pos-against">
+      <div class="pos-label red">Позиция «Люди важнее технологий»</div>
+      <p style="font-weight:700;color:var(--white);margin-bottom:6px;">«CRM не заменит живого управляющего»</p>
+      <p class="pos-text">Дашборды — это прекрасно, но франчайзи в Новосибирске нужен не дашборд, а человек, который приедет и поможет. Лучшие сети растут не на IT, а на отношениях. Технологии — инструмент, не замена людей.</p>
+      <p class="src">Вероятный сторонник: Харитонова (опыт работы с реальными партнёрами)</p>
+    </div>
+  </div>
+
+  <div class="callout fade">
+    <strong>Провокация:</strong> «Давайте представим: появляется AI-платформа, которая за 50 тысяч рублей делает всё что делает упаковщик франшизы за миллион — франчайзи-бук, финмодель, скрипты, даже сайт. Анна, Денис — ваш бизнес через два года ещё существует?»
+  </div>
+
+  <div class="mod fade">
+    <em>Переход к финалу:</em> «Три темы позади. Теперь главный вопрос — каждому по минуте.»
+  </div>
+</div>
+</section>
+
+<!-- ============================== -->
+<!-- BLOCK 4: ФИНАЛ -->
+<!-- ============================== -->
+<div class="divider"></div>
+<section>
+<div class="container">
+  <h2 class="fade">Блок 4 · <span class="red">Финал</span></h2>
+  <p style="font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:3px;color:var(--gray);">50:00 – 60:00 · 10 МИНУТ</p>
+
+  <div class="hook fade">
+    <div class="hook-label">ХУК ДЛЯ ФИНАЛЬНОГО БЛОКА</div>
+    <div class="hook-text">«Человек сидит в зале, у него работающий бизнес с 3-5 точками. Он думает — масштабироваться через франшизу или открывать свои. У него 500 тысяч на упаковку. Каждому из вас — одна минута. Что ему делать первым делом?»</div>
+  </div>
+
+  <div class="fade">
+    <div class="q"><span class="q-arrow">→</span><span class="q-text">Минимальный набор: что обязательно должно быть готово до первой продажи франшизы?</span></div>
+    <div class="q"><span class="q-arrow">→</span><span class="q-text">Самая дорогая ошибка в упаковке которую вы видели — сколько и почему?</span></div>
+    <div class="q"><span class="q-arrow">→</span><span class="q-text">Финал: одно предложение — что отличает франшизу которая продаётся от франшизы которая пылится?</span></div>
+  </div>
+
+  <div class="grid-2 fade" style="margin-top:24px;">
+    <div class="card" style="border-top:3px solid var(--red);">
+      <h3 class="red">Франшиза которая пылится</h3>
+      <p style="font-size:0.9rem;color:var(--gray);line-height:1.6;">Красивый сайт, глянцевая презентация, нереалистичная финмодель. Нет собственных точек или они убыточные. После оплаты — тишина. Один франчайзи-бук и номер телефона менеджера, который не берёт трубку.</p>
+    </div>
+    <div class="card" style="border-top:3px solid var(--green);">
+      <h3 class="green">Франшиза которая продаётся</h3>
+      <p style="font-size:0.9rem;color:var(--gray);line-height:1.6;">Работающие собственные точки. Оцифрованные процессы. Реалистичная финмодель с подтверждёнными цифрами. Живая поддержка: обучение, выезды, аудиты. Действующие франчайзи готовы рекомендовать.</p>
+    </div>
+  </div>
+
+  <div class="mod fade" style="margin-top:24px;">
+    <em>Закрытие модуля:</em> «За этот час мы разобрали франшизу на атомы — от обёртки до внутренних процессов. Вывод простой: рынок взрослеет. Красивая упаковка без содержания больше не продаёт. Побеждают те, кто строит систему — процессы, людей, технологии. Спасибо [имена спикеров] за жёсткую и честную дискуссию. Перерыв.»
+  </div>
+</div>
+</section>
+
+<!-- ============================== -->
+<!-- TIMELINE -->
+<!-- ============================== -->
+<div class="divider"></div>
+<section>
+<div class="container">
+  <h2 class="fade">Таймлайн · <span class="red">60 минут</span></h2>
+
+  <div class="tl fade">
+    <div class="tl-item">
+      <div class="tl-time">0:00</div><div class="tl-dot"></div>
+      <div class="tl-card">
+        <div class="tl-tag yellow">ОТКРЫТИЕ</div>
+        <div class="tl-title">Hook → Meat → Lineup</div>
+        <p style="font-size:0.85rem;color:var(--gray);">500 новых франшиз, спад сделок, чёрные отзывы → три темы → представление. 5 минут.</p>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-time">5:00</div><div class="tl-dot"></div>
+      <div class="tl-card">
+        <div class="tl-tag red">БЛОК 1</div>
+        <div class="tl-title">Обёртка vs процессы</div>
+        <p style="font-size:0.85rem;color:var(--gray);">Хук: «Инфоцыгане упакованы лучше реальных — почему?» Конфликт: сначала продай vs сначала построй. 15 минут.</p>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-time">20:00</div><div class="tl-dot"></div>
+      <div class="tl-card">
+        <div class="tl-tag red">БЛОК 2</div>
+        <div class="tl-title">Обучение и контроль</div>
+        <p style="font-size:0.85rem;color:var(--gray);">Хук: «Через 3 месяца кассовый разрыв, а УК не берёт трубку.» Конфликт: жёсткий контроль vs свобода партнёра. 15 минут.</p>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-time">35:00</div><div class="tl-dot"></div>
+      <div class="tl-card">
+        <div class="tl-tag red">БЛОК 3</div>
+        <div class="tl-title">Франшиза будущего</div>
+        <p style="font-size:0.85rem;color:var(--gray);">Хук: «Dodo продаёт экосистему, а не коробку.» Конфликт: IT-системы vs живые люди. Чёрные отзывы. AI. 15 минут.</p>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-time">50:00</div><div class="tl-dot"></div>
+      <div class="tl-card">
+        <div class="tl-tag green">ФИНАЛ</div>
+        <div class="tl-title">Практические советы + закрытие</div>
+        <p style="font-size:0.85rem;color:var(--gray);">«У него 500К на упаковку — что делать?» По 1.5 мин каждому. Закрытие модератором. 10 минут.</p>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ============================== -->
+<!-- CHEAT SHEET -->
+<!-- ============================== -->
+<div class="divider"></div>
+<section style="background:var(--card);">
+<div class="container">
+  <h2 class="fade">Шпаргалка <span class="red">модератора</span></h2>
+  <p class="sub fade">Держи перед собой на столе</p>
+
+  <div class="grid-2 fade">
+    <div class="card" style="border-left:3px solid var(--orange);">
+      <h3 class="orange">Если дискуссия затухает</h3>
+      <div class="q"><span class="q-arrow">→</span><span class="q-text">«Кто из вас отказывал клиенту в упаковке? Почему? Расскажите.»</span></div>
+      <div class="q"><span class="q-arrow">→</span><span class="q-text">«Давайте честно — какой процент франшиз на рынке вы считаете качественными?»</span></div>
+      <div class="q"><span class="q-arrow">→</span><span class="q-text">«Кто в зале покупал франшизу? Что вам обещали — и что получили на деле?»</span></div>
+    </div>
+    <div class="card" style="border-left:3px solid var(--red);">
+      <h3 class="red">Если спикер уходит в монолог (>2 мин)</h3>
+      <div class="q"><span class="q-arrow">→</span><span class="q-text">«Стоп, давай конкретнее — сколько это стоило? Какой был результат?»</span></div>
+      <div class="q"><span class="q-arrow">→</span><span class="q-text">«Подожди — [имя], у тебя явно другой опыт. Расскажи.»</span></div>
+      <div class="q"><span class="q-arrow">→</span><span class="q-text">«Это интересно, но мне кажется [имя] сейчас взорвётся — дай ему слово.»</span></div>
+    </div>
+  </div>
+
+  <div class="grid-2 fade" style="margin-top:16px;">
+    <div class="card" style="border-left:3px solid var(--blue);">
+      <h3 class="blue">Провокации для остроты</h3>
+      <div class="q"><span class="q-arrow">→</span><span class="q-text">«Может упаковщики франшиз — это и есть главные инфоцыгане рынка?»</span></div>
+      <div class="q"><span class="q-arrow">→</span><span class="q-text">«Если Dodo — эталон, то все остальные — подделки?»</span></div>
+      <div class="q"><span class="q-arrow">→</span><span class="q-text">«Роялти 5% от выручки — за что конкретно? Перечисли на пальцах.»</span></div>
+    </div>
+    <div class="card" style="border-left:3px solid var(--green);">
+      <h3 class="green">Фразы для переходов</h3>
+      <div class="q"><span class="q-arrow">→</span><span class="q-text">«Окей, с обёрткой разобрались. А что внутри — после продажи?»</span></div>
+      <div class="q"><span class="q-arrow">→</span><span class="q-text">«Это мощная мысль. Повтори — хочу чтобы зал это услышал.»</span></div>
+      <div class="q"><span class="q-arrow">→</span><span class="q-text">«Мы говорим о настоящем. А теперь — про будущее.»</span></div>
+    </div>
+  </div>
+</div>
+</section>
+
+<div class="divider"></div>
+<section>
+<div class="container">
+<div class="card fade" style="border-left:4px solid #4caf50;text-align:center;padding:32px;">
+<h3 style="color:#4caf50;">Есть пожелания или предложения по сценарию?</h3>
+<p style="font-size:1rem;color:#777;margin-top:8px;">Пишите <a href="https://t.me/frguru" style="color:#E63946;font-weight:700;">@frguru</a> в Telegram</p>
+</div>
+</div>
+</section>
+<footer style="padding:32px 0;text-align:center;">
+  <p style="font-size:0.75rem;color:var(--gray);">Сценарий · Модуль 4 · ТОК-ШОУ «Франчайзинг по-русски» · 15 марта 2026</p>
+</footer>
+
+<script>
+function toggleNav(){document.getElementById("sidebar").classList.toggle("open");document.getElementById("overlay").classList.toggle("open");document.querySelector(".nav-btn").classList.toggle("open");}
+const obs = new IntersectionObserver(e => {
+  e.forEach(el => { if(el.isIntersecting) el.target.classList.add('vis'); });
+}, { threshold: 0.12 });
+document.querySelectorAll('.fade').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>

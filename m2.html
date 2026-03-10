@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Модуль 2 · Сценарий · Ресторанный франчайзинг</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0a0a;--card:#161616;--card2:#1e1e1e;--red:#E63946;--white:#f0f0f0;--gray:#777;--green:#4caf50;--yellow:#f9a825;--blue:#42a5f5;--orange:#ff9800}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Manrope',sans-serif;background:var(--bg);color:var(--white);line-height:1.7}
+.container{max-width:1100px;margin:0 auto;padding:0 24px}
+section{padding:60px 0}
+h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.5rem,6vw,4.5rem);letter-spacing:2px;text-transform:uppercase;line-height:1}
+h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(1.8rem,4vw,3rem);letter-spacing:2px;text-transform:uppercase;margin-bottom:12px}
+h3{font-size:1.05rem;font-weight:800;margin-bottom:6px}
+.red{color:var(--red)}.green{color:var(--green)}.yellow{color:var(--yellow)}.blue{color:var(--blue)}.gray{color:var(--gray)}.orange{color:var(--orange)}
+.sub{color:var(--gray);font-size:1rem;max-width:700px;margin-bottom:32px}
+.src{font-size:0.7rem;color:var(--gray);font-style:italic;margin-top:6px}
+
+/* Hero */
+.hero{min-height:50vh;display:flex;align-items:center;border-bottom:3px solid var(--red);position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-30%;right:-15%;width:60vw;height:60vw;background:radial-gradient(circle,rgba(230,57,70,0.08),transparent 70%);pointer-events:none}
+.badge{display:inline-block;border:1px solid var(--red);color:var(--red);font-size:0.7rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;padding:5px 14px;margin-bottom:20px}
+
+/* Timeline */
+.tl{position:relative;padding-left:80px}
+.tl::before{content:'';position:absolute;left:35px;top:0;bottom:0;width:2px;background:linear-gradient(180deg,var(--red),var(--card))}
+.tl-item{margin-bottom:40px;position:relative}
+.tl-time{position:absolute;left:-80px;top:2px;width:65px;font-family:'Bebas Neue',sans-serif;font-size:1.1rem;color:var(--red);text-align:right;letter-spacing:1px}
+.tl-dot{position:absolute;left:-49px;top:6px;width:12px;height:12px;border-radius:50%;border:2px solid var(--red);background:var(--bg)}
+.tl-card{background:var(--card);border:1px solid rgba(255,255,255,0.04);padding:24px 28px}
+.tl-card:hover{border-color:rgba(230,57,70,0.25)}
+.tl-tag{font-size:0.65rem;text-transform:uppercase;letter-spacing:3px;font-weight:700;margin-bottom:6px}
+.tl-title{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;color:var(--white);letter-spacing:1px;margin-bottom:10px;line-height:1.1}
+
+/* Hook block */
+.hook{background:var(--red);color:var(--white);padding:32px;margin:24px 0;position:relative}
+.hook::before{content:'🪝';position:absolute;top:16px;right:20px;font-size:2rem;opacity:0.3}
+.hook-label{font-family:'Bebas Neue',sans-serif;font-size:0.8rem;letter-spacing:4px;opacity:0.7;margin-bottom:8px}
+.hook-text{font-size:1.15rem;font-weight:700;line-height:1.5}
+
+/* Moderator speech */
+.mod{background:var(--card2);border-left:3px solid var(--orange);padding:20px 24px;margin:16px 0;font-size:0.95rem}
+.mod::before{content:'🎤 МОДЕРАТОР';font-family:'Bebas Neue',sans-serif;font-size:0.7rem;letter-spacing:3px;color:var(--orange);display:block;margin-bottom:6px}
+.mod em{color:var(--orange);font-style:normal;font-weight:700}
+
+/* Position cards */
+.pos-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:16px 0}
+.pos{padding:20px;border:1px solid rgba(255,255,255,0.05)}
+.pos-for{background:rgba(76,175,80,0.06);border-left:3px solid var(--green)}
+.pos-against{background:rgba(230,57,70,0.06);border-left:3px solid var(--red)}
+.pos-label{font-size:0.7rem;text-transform:uppercase;letter-spacing:2px;font-weight:700;margin-bottom:6px}
+.pos-text{font-size:0.9rem;color:var(--gray);line-height:1.6}
+
+/* Question */
+.q{display:flex;gap:12px;padding:10px 0;align-items:flex-start}
+.q-arrow{color:var(--red);font-weight:700;font-size:1.1rem;flex-shrink:0;margin-top:2px}
+.q-text{font-size:0.95rem}
+
+/* Note */
+.note{font-size:0.85rem;color:var(--gray);font-style:italic;padding:8px 0 8px 24px;border-left:2px solid rgba(255,255,255,0.08);margin:8px 0}
+
+/* Stats */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px;margin:20px 0}
+.stat{background:var(--card);padding:20px;border-left:3px solid var(--red)}
+.stat-n{font-family:'Bebas Neue',sans-serif;font-size:2.2rem;color:var(--red);line-height:1}
+.stat-l{font-size:0.8rem;color:var(--gray);margin-top:4px}
+
+/* Flow */
+.flow{display:flex;align-items:center;gap:0;margin:20px 0;flex-wrap:wrap}
+.flow-s{background:var(--card);padding:14px 16px;text-align:center;flex:1;min-width:120px}
+.flow-s .fn{font-family:'Bebas Neue',sans-serif;font-size:1.4rem;color:var(--red)}
+.flow-s .ft{font-size:0.75rem;color:var(--gray)}
+.flow-a{font-size:1.2rem;color:var(--red);padding:0 4px}
+
+/* Divider */
+.divider{height:2px;background:linear-gradient(90deg,var(--red),transparent)}
+
+/* Cards */
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.card{background:var(--card);border:1px solid rgba(255,255,255,0.04);padding:24px}
+
+/* Callout */
+.callout{background:var(--card);border-left:4px solid var(--red);padding:20px 24px;margin:20px 0}
+
+/* Speaker pill */
+.speakers{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+.spkr{background:var(--card2);padding:6px 14px;font-size:0.8rem;color:var(--gray);border:1px solid rgba(255,255,255,0.05)}
+.spkr strong{color:var(--white)}
+
+/* Responsive */
+@media(max-width:768px){.grid-2,.grid-3,.pos-grid{grid-template-columns:1fr}.tl{padding-left:60px}.tl-time{left:-60px;width:50px;font-size:0.9rem}.tl-dot{left:-29px}.flow{flex-direction:column}.flow-a{transform:rotate(90deg)}}
+
+/* Animations */
+.fade{opacity:0;transform:translateY(25px);transition:all 0.7s ease}
+.fade.vis{opacity:1;transform:translateY(0)}
+/* NAV */
+.nav-btn{position:fixed;top:20px;left:20px;z-index:1000;width:44px;height:44px;background:var(--card);border:1px solid rgba(255,255,255,0.1);border-radius:8px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .3s}
+.nav-btn:hover{border-color:var(--red)}
+.nav-btn span{display:block;width:20px;height:2px;background:var(--white);position:relative;transition:all .3s}
+.nav-btn span::before,.nav-btn span::after{content:'';position:absolute;width:20px;height:2px;background:var(--white);transition:all .3s}
+.nav-btn span::before{top:-6px}
+.nav-btn span::after{top:6px}
+.nav-btn.open span{background:transparent}
+.nav-btn.open span::before{transform:rotate(45deg);top:0}
+.nav-btn.open span::after{transform:rotate(-45deg);top:0}
+.sidebar{position:fixed;top:0;left:-320px;width:300px;height:100%;background:var(--card);z-index:999;transition:left .3s ease;overflow-y:auto;padding:80px 24px 40px;border-right:1px solid rgba(255,255,255,0.05)}
+.sidebar.open{left:0}
+.sidebar-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.6);z-index:998;opacity:0;pointer-events:none;transition:opacity .3s}
+.sidebar-overlay.open{opacity:1;pointer-events:all}
+.sidebar a{display:block;color:var(--gray);text-decoration:none;padding:12px 16px;font-size:0.9rem;border-left:2px solid transparent;transition:all .2s;margin-bottom:2px}
+.sidebar a:hover,.sidebar a.active{color:var(--white);border-left-color:var(--red);background:rgba(230,57,70,0.05)}
+.sidebar .nav-label{font-family:'Bebas Neue',sans-serif;font-size:0.75rem;letter-spacing:3px;color:var(--red);padding:16px 16px 4px;text-transform:uppercase}
+
+</style>
+</head>
+<body>
+<div class="nav-btn" onclick="toggleNav()"><span></span></div>
+<div class="sidebar" id="sidebar">
+<div class="nav-label">Навигация</div>
+<a href="index.html">🏠 Главная</a>
+<div class="nav-label">Сценарии</div>
+<a href="m2.html" class="active">Модуль 2 · Рестораны</a>
+<a href="m3.html">Модуль 3 · Маркетинг</a>
+<a href="m4.html">Модуль 4 · Упаковка</a>
+<a href="m5.html">Модуль 5 · Будущее</a>
+<div class="nav-label" style="margin-top:24px;">Контакты</div>
+<a href="https://t.me/frguru" target="_blank">✏️ Предложения → @frguru</a>
+<a href="https://t.me/Yes_Yasya" target="_blank">📞 Менеджер → @Yes_Yasya</a>
+</div>
+<div class="sidebar-overlay" id="overlay" onclick="toggleNav()"></div>
+
+<!-- HERO -->
+<section class="hero">
+<div class="container">
+  <div class="badge">Сценарий модуля 2 · 60 минут · 15 марта 2026</div>
+  <h1>Ресторанный<br><span class="red">франчайзинг</span></h1>
+  <p style="font-size:1.1rem;color:var(--gray);margin-top:16px;max-width:550px;">Детальный сценарий с хуками, позициями спикеров и точками конфликта для живой дискуссии.</p>
+  <div class="speakers" style="margin-top:24px;">
+    <div class="spkr"><strong>Александр Назаров</strong> · ex-My Box</div>
+    <div class="spkr"><strong>Алёна Овчинникова</strong> · ex-GaGawa</div>
+    <div class="spkr"><strong>Vasilchuki</strong> · Restaurant Group</div>
+    <div class="spkr" style="border-color:var(--red);color:var(--red);">+ 1 свободное место</div>
+  </div>
+</div>
+</section>
+
+<!-- ============================== -->
+<!-- OPENING: 0:00 – 5:00 -->
+<!-- ============================== -->
+<div class="divider"></div>
+<section>
+<div class="container">
+  <h2 class="fade">Открытие · <span class="red">0:00 – 5:00</span></h2>
+  <p class="sub fade">Три шага мощного открытия: Hook → Meat → Lineup</p>
+
+  <!-- HOOK -->
+  <div class="fade">
+    <div style="font-family:'Bebas Neue',sans-serif;font-size:0.8rem;letter-spacing:4px;color:var(--yellow);margin-bottom:8px;">ШАГ 1 · КРЮЧОК 🪝</div>
+    <div class="hook">
+      <div class="hook-label">Модератор произносит без представления, сразу:</div>
+      <div class="hook-text">«За последний год в Москве закрылось больше ресторанов, чем за предыдущие три. "Шоколадница" минус 20 точек. "Ростикс" минус 25. "Якитория" минус 8. И это только крупные сети. При этом Vasilchuki планирует открыть 9 новых проектов, а "Моккано" открыли 4 точки в малых городах. Одни закрываются — другие растут. Почему?»</div>
+    </div>
+    <div class="note">Пауза 3 секунды. Дать аудитории переварить. Камера снимает реакции спикеров.</div>
+  </div>
+
+  <!-- MEAT -->
+  <div class="fade" style="margin-top:32px;">
+    <div style="font-family:'Bebas Neue',sans-serif;font-size:0.8rem;letter-spacing:4px;color:var(--blue);margin-bottom:8px;">ШАГ 2 · СУТЬ 🥩</div>
+    <div class="mod">
+      «Следующий час мы разберём три давления, которые прямо сейчас ломают ресторанный бизнес: <em>кадры, которых нет</em>, <em>продукты, которые дорожают быстрее меню</em>, и <em>агрегаторы, которые забирают до 45% с каждого заказа</em>. И главное — мы поговорим о том, как франшизы, которые растут, решают эти проблемы. Без теории — только реальные цифры и кейсы людей, которые прямо сейчас управляют сетями.»
+    </div>
+  </div>
+
+  <!-- LINEUP -->
+  <div class="fade" style="margin-top:32px;">
+    <div style="font-family:'Bebas Neue',sans-serif;font-size:0.8rem;letter-spacing:4px;color:var(--green);margin-bottom:8px;">ШАГ 3 · ПРЕДСТАВЛЕНИЕ 🎤</div>
+    <div class="mod">
+      «Со мной сегодня люди, которые эти проблемы решают руками каждый день. <em>Александр Назаров</em> — построил франчайзинг My Box, знает как масштабировать, когда всё против тебя. <em>Алёна Овчинникова</em> — прошла путь GaGawa от одной точки до сети, и знает цену каждого нанятого повара. И представитель <em>Vasilchuki Restaurant Group</em> — ребята, которые вопреки всему планируют 9 новых проектов. Начнём. Александр, первый вопрос — тебе.»
+    </div>
+    <div class="note">Важно: не зачитывать регалии списком. Каждого спикера привязать к конкретному опыту. Представление должно занять 40-60 секунд.</div>
+  </div>
+</div>
+</section>
+
+<!-- ============================== -->
+<!-- BLOCK 1: КАДРОВЫЙ ГОЛОД 5:00 – 20:00 -->
+<!-- ============================== -->
+<div class="divider"></div>
+<section>
+<div class="container">
+  <h2 class="fade">Блок 1 · <span class="red">Кадровый голод</span></h2>
+  <p style="font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:3px;color:var(--gray);">5:00 – 20:00 · 15 МИНУТ</p>
+
+  <div class="stats fade" style="margin-top:24px;">
+    <div class="stat"><div class="stat-n">1.8</div><div class="stat-l">резюме на 1 вакансию повара</div></div>
+    <div class="stat"><div class="stat-n">15.6%</div><div class="stat-l">доля ФОТ в выручке (было 12%)</div></div>
+    <div class="stat"><div class="stat-n">28%</div><div class="stat-l">текучесть кадров в HoReCa</div></div>
+  </div>
+
+  <!-- Hook for block -->
+  <div class="hook fade">
+    <div class="hook-label">ХУК ДЛЯ ВХОДА В ТЕМУ</div>
+    <div class="hook-text">«Александр, давай начистоту. На одну вакансию повара сейчас приходит меньше двух резюме. При этом зарплаты в общепите выросли так, что ФОТ съедает уже 15% выручки. Вопрос простой: ресторанная франшиза в 2026 — это бизнес с людьми или бизнес вопреки людям?»</div>
+  </div>
+
+  <h3 class="fade" style="margin-top:24px;">Ключевые вопросы для дискуссии</h3>
+  <div class="fade">
+    <div class="q"><span class="q-arrow">→</span><span class="q-text">Где вы берёте поваров прямо сейчас — и сколько платите, если честно?</span></div>
+    <div class="q"><span class="q-arrow">→</span><span class="q-text">Можно ли построить ресторанную франшизу, где повар не нужен? Роботы, полуфабрикаты, конвейер?</span></div>
+    <div class="q"><span class="q-arrow">→</span><span class="q-text">Алёна, GaGawa работала с авторской кухней — как удерживать шеф-повара во франшизной сети, где он не автор?</span></div>
+  </div>
+
+  <h3 class="fade" style="margin-top:24px;">Точки конфликта между спикерами</h3>
+  <div class="pos-grid fade">
+    <div class="pos pos-for">
+      <div class="pos-label green">Позиция «Система»</div>
+      <p style="font-weight:700;color:var(--white);margin-bottom:6px;">«Нужно убирать зависимость от людей»</p>
+      <p class="pos-text">Максимальная автоматизация, стандартизация рецептур, полуфабрикаты, конвейерная логика. Повар — оператор, а не творец. Масштабирование возможно только так.</p>
+      <p class="src">Вероятный сторонник: Назаров (опыт масштабирования My Box)</p>
+    </div>
+    <div class="pos pos-against">
+      <div class="pos-label red">Позиция «Люди»</div>
+      <p style="font-weight:700;color:var(--white);margin-bottom:6px;">«Без сильных людей сеть — труп»</p>
+      <p class="pos-text">Инвестировать в команду, растить изнутри, создавать карьерные треки. Гость платит за атмосферу и вкус, а не за робота. Автоматизация убивает душу бренда.</p>
+      <p class="src">Вероятный сторонник: Овчинникова (опыт авторской кухни GaGawa)</p>
+    </div>
+  </div>
+
+  <div class="mod fade">
+    <em>Переход к фудкосту:</em> «Окей, допустим мы нашли людей и даже удержали их. Но тут возникает вторая проблема — им нечем готовить. Точнее, есть чем, но за такие деньги, что маржа исчезает. Давайте про фудкост.»
+  </div>
+</div>
+</section>
+
+<!-- ============================== -->
+<!-- BLOCK 2: ФУДКОСТ 20:00 – 35:00 -->
+<!-- ============================== -->
+<div class="divider"></div>
+<section>
+<div class="container">
+  <h2 class="fade">Блок 2 · <span class="red">Фудкост и инфляция</span></h2>
+  <p style="font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:3px;color:var(--gray);">20:00 – 35:00 · 15 МИНУТ</p>
+
+  <div class="flow fade" style="margin-top:24px;">
+    <div class="flow-s"><div class="fn">+62%</div><div class="ft">Картофель</div></div>
+    <div class="flow-a">·</div>
+    <div class="flow-s"><div class="fn">+45%</div><div class="ft">Капуста</div></div>
+    <div class="flow-a">·</div>
+    <div class="flow-s"><div class="fn">+30%</div><div class="ft">Масло</div></div>
+    <div class="flow-a">·</div>
+    <div class="flow-s"><div class="fn">+24%</div><div class="ft">Кофе</div></div>
+    <div class="flow-a">→</div>
+    <div class="flow-s" style="background:var(--red);"><div class="fn" style="color:var(--white);">38-45%</div><div class="ft" style="color:rgba(255,255,255,0.7);">Реальный фудкост (норма 25-35%)</div></div>
+  </div>
+
+  <div class="hook fade">
+    <div class="hook-label">ХУК ДЛЯ ВХОДА В ТЕМУ</div>
+    <div class="hook-text">«Картошка за год подорожала на 62 процента. Шестьдесят два. Капуста — на 45. Масло — на 30. Но поднять меню на 62% нельзя — гость встанет и уйдёт. Вопрос: кто платит разницу? Спойлер — франчайзи. Особенно когда управляющая компания ещё и заставляет покупать у "своего" поставщика. Алёна, расскажи — это действительно так работает?»</div>
+  </div>
+
+  <div class="fade">
+    <div class="q"><span class="q-arrow">→</span><span class="q-text">Какой у вас реальный фудкост сейчас — и каким он был два года назад? Конкретные цифры.</span></div>
+    <div class="q"><span class="q-arrow">→</span><span class="q-text">Обязательные поставщики: защита стандартов или способ заработать на франчайзи? Кто из вас сталкивался?</span></div>
+    <div class="q"><span class="q-arrow">→</span><span class="q-text">Vasilchuki — при 9 запланированных проектах, как вы решаете вопрос supply chain? Свои поставщики, локальные закупки?</span></div>
+  </div>
+
+  <h3 class="fade" style="margin-top:24px;">Точки конфликта</h3>
+  <div class="pos-grid fade">
+    <div class="pos pos-for">
+      <div class="pos-label green">Позиция «Единый поставщик — это благо»</div>
+      <p style="font-weight:700;color:var(--white);margin-bottom:6px;">«Стандарты качества важнее экономии»</p>
+      <p class="pos-text">Единый поставщик гарантирует стабильное качество по всей сети. Франчайзи не эксперт по закупкам — дай ему свободу, он купит дешевле, но хуже. Репутация сети = единый продукт.</p>
+      <p class="src">Вероятный сторонник: представитель Vasilchuki (крупная сеть со стандартами)</p>
+    </div>
+    <div class="pos pos-against">
+      <div class="pos-label red">Позиция «Это способ заработать на франчайзи»</div>
+      <p style="font-weight:700;color:var(--white);margin-bottom:6px;">«УК зарабатывает на наценке, а франчайзи страдает»</p>
+      <p class="pos-text">Наценка «за логистику» в 15-25% — это скрытый роялти. Франчайзи должен иметь право закупать у локальных поставщиков по спецификации, а не по цене аффилированной компании. Это вопрос честности.</p>
+      <p class="src">Вероятный сторонник: Назаров (видел изнутри систему закупок My Box)</p>
+    </div>
+  </div>
+
+  <div class="callout fade">
+    <strong>Провокация для обострения:</strong> «Давайте посчитаем вместе. Если фудкост у франчайзи вырос с 28% до 40% из-за обязательного поставщика, а роялти ещё 5-7% — то сколько на самом деле платит франчайзи управляющей компании? Это ведь уже не франшиза, это аренда бренда.»
+  </div>
+
+  <div class="mod fade">
+    <em>Переход к агрегаторам:</em> «Ладно, допустим мы нашли людей, договорились о ценах на продукты. Теперь нужно продать. И тут на сцену выходит Яндекс, который говорит: "Мы приведём тебе клиентов. Всего за 35-45 процентов с заказа." Давайте об этом.»
+  </div>
+</div>
+</section>
+
+<!-- ============================== -->
+<!-- BLOCK 3: АГРЕГАТОРЫ 35:00 – 50:00 -->
+<!-- ============================== -->
+<div class="divider"></div>
+<section>
+<div class="container">
+  <h2 class="fade">Блок 3 · <span class="red">Агрегаторы и доставка</span></h2>
+  <p style="font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:3px;color:var(--gray);">35:00 – 50:00 · 15 МИНУТ</p>
+
+  <div class="stats fade" style="margin-top:24px;">
+    <div class="stat"><div class="stat-n">25-45%</div><div class="stat-l">Реальная комиссия Яндекс.Еды</div></div>
+    <div class="stat"><div class="stat-n">60%</div><div class="stat-l">Заказов через агрегаторы</div></div>
+    <div class="stat"><div class="stat-n">35%</div><div class="stat-l">Прогноз доли дарк-китченов</div></div>
+  </div>
+
+  <div class="hook fade">
+    <div class="hook-label">ХУК ДЛЯ ВХОДА В ТЕМУ</div>
+    <div class="hook-text">«Один ресторатор мне сказал: "Работать только через агрегаторы — это медленное самоубийство. Но не работать через них — быстрое." 60 процентов заказов в крупных городах проходит через Яндекс.Еду и Купер. Комиссия — 35%, а с продвижением — до 45%. Вопрос: агрегаторы — это партнёр или паразит?»</div>
+  </div>
+
+  <div class="fade">
+    <div class="q"><span class="q-arrow">→</span><span class="q-text">Какой процент вашей выручки идёт через агрегаторы — и сколько вы реально на этом зарабатываете?</span></div>
+    <div class="q"><span class="q-arrow">→</span><span class="q-text">Дарк-китчен как франшиза — это реальный бизнес или ловушка? 100% зависимость от платформы.</span></div>
+    <div class="q"><span class="q-arrow">→</span><span class="q-text">Кто из вас пробовал уйти от агрегаторов — Telegram-боты, свой сайт, самовывоз — и что из этого работает?</span></div>
+  </div>
+
+  <h3 class="fade" style="margin-top:24px;">Точки конфликта</h3>
+  <div class="pos-grid fade">
+    <div class="pos pos-for">
+      <div class="pos-label green">Позиция «Агрегаторы — необходимое зло»</div>
+      <p style="font-weight:700;color:var(--white);margin-bottom:6px;">«Без них вы невидимка»</p>
+      <p class="pos-text">40% выручки через Яндекс — это 40%, которых без него не было бы. Комиссия — это стоимость маркетинга, который вы не умеете делать сами. Хватит жаловаться — научитесь работать в системе.</p>
+      <p class="src">Вероятная позиция: прагматичный взгляд, может исходить от крупной сети</p>
+    </div>
+    <div class="pos pos-against">
+      <div class="pos-label red">Позиция «Агрегаторы убивают бизнес»</div>
+      <p style="font-weight:700;color:var(--white);margin-bottom:6px;">«Вы кормите Яндекс, а не себя»</p>
+      <p class="pos-text">35-45% с заказа при фудкосте 35% и ФОТ 15% — бизнес в минусе. Каждый заказ через агрегатор — благотворительность. Нужно строить собственные каналы, пусть это дольше и сложнее.</p>
+      <p class="src">Вероятная позиция: рестораторы, которые строят прямые каналы</p>
+    </div>
+  </div>
+
+  <div class="callout fade">
+    <strong>Провокация для обострения:</strong> «Давайте представим: Яндекс.Еда завтра поднимает комиссию до 50%. Что вы будете делать? У вас есть план Б — или вы заложники? Поднимите руку кто из зала заказывает еду через агрегатор. Видите — вот ваши клиенты. Они привыкли. Как их оттуда забрать?»
+  </div>
+
+  <div class="mod fade">
+    <em>Переход к финалу:</em> «Мы разобрали три удара по маржинальности. Теперь давайте о будущем — что вообще будет с ресторанным франчайзингом? Кто выживет?»
+  </div>
+</div>
+</section>
+
+<!-- ============================== -->
+<!-- BLOCK 4: ФИНАЛ 50:00 – 60:00 -->
+<!-- ============================== -->
+<div class="divider"></div>
+<section>
+<div class="container">
+  <h2 class="fade">Блок 4 · <span class="red">Прогнозы и финал</span></h2>
+  <p style="font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:3px;color:var(--gray);">50:00 – 60:00 · 10 МИНУТ</p>
+
+  <div class="hook fade">
+    <div class="hook-label">ХУК ДЛЯ ФИНАЛЬНОГО БЛОКА</div>
+    <div class="hook-text">«Кадров нет. Продукты дорожают. Агрегаторы забирают половину. При этом ритейл запускает собственные рестораны и готовую еду. Вопрос прямой: ресторанный франчайзинг через 3 года — это растущий рынок или кладбище? Каждому по одной минуте. Александр, начинай.»</div>
+  </div>
+
+  <div class="fade">
+    <div class="q"><span class="q-arrow">→</span><span class="q-text">Какие форматы ресторанных франшиз будут расти — а какие умрут?</span></div>
+    <div class="q"><span class="q-arrow">→</span><span class="q-text">Конкуренция с ритейлом (готовая еда в «Пятёрочке») — это смерть для ресторанов или разные рынки?</span></div>
+    <div class="q"><span class="q-arrow">→</span><span class="q-text">Финальный вопрос: один совет человеку, который сегодня хочет купить ресторанную франшизу?</span></div>
+  </div>
+
+  <h3 class="fade" style="margin-top:24px;">Возможные позиции</h3>
+  <div class="grid-3 fade">
+    <div class="card" style="border-top:3px solid var(--green);">
+      <h3 class="green">Оптимист</h3>
+      <p style="font-size:0.85rem;color:var(--gray);">Слабые уйдут — сильные заберут их долю. Консолидация рынка = возможность для тех кто остался. Малые форматы, корнеры, быстрый оборот.</p>
+    </div>
+    <div class="card" style="border-top:3px solid var(--yellow);">
+      <h3 class="yellow">Реалист</h3>
+      <p style="font-size:0.85rem;color:var(--gray);">Рынок трансформируется. Классический ресторан франшизировать всё сложнее. Будущее — за гибридными форматами: зал + доставка + ритейл.</p>
+    </div>
+    <div class="card" style="border-top:3px solid var(--red);">
+      <h3 class="red">Пессимист</h3>
+      <p style="font-size:0.85rem;color:var(--gray);">Маржа сжата с трёх сторон. Рост ФОТ + фудкост + комиссии = нерентабельность. Выживут только сети с собственным supply chain и технологиями.</p>
+    </div>
+  </div>
+
+  <div class="mod fade" style="margin-top:24px;">
+    <em>Закрытие модуля:</em> «Друзья, мы за час прошли через три удара по ресторанному бизнесу — и ни один из спикеров не сказал что это конец. Рынок не умирает — он мутирует. И те кто мутирует вместе с ним — те растут. Спасибо [имена спикеров] — мощнейшая дискуссия. Мы уходим на перерыв.»
+  </div>
+</div>
+</section>
+
+<!-- ============================== -->
+<!-- TIMELINE OVERVIEW -->
+<!-- ============================== -->
+<div class="divider"></div>
+<section>
+<div class="container">
+  <h2 class="fade">Таймлайн · <span class="red">60 минут</span></h2>
+
+  <div class="tl fade">
+    <div class="tl-item">
+      <div class="tl-time">0:00</div><div class="tl-dot"></div>
+      <div class="tl-card">
+        <div class="tl-tag yellow">ОТКРЫТИЕ</div>
+        <div class="tl-title">Hook → Meat → Lineup</div>
+        <p style="font-size:0.85rem;color:var(--gray);">Факт о закрытиях → зачем мы здесь → динамичное представление спикеров. 5 минут.</p>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-time">5:00</div><div class="tl-dot"></div>
+      <div class="tl-card">
+        <div class="tl-tag red">БЛОК 1</div>
+        <div class="tl-title">Кадровый голод</div>
+        <p style="font-size:0.85rem;color:var(--gray);">Хук: «Бизнес с людьми или вопреки?» Конфликт: автоматизация vs инвестиции в команду. 15 минут.</p>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-time">20:00</div><div class="tl-dot"></div>
+      <div class="tl-card">
+        <div class="tl-tag red">БЛОК 2</div>
+        <div class="tl-title">Фудкост и инфляция</div>
+        <p style="font-size:0.85rem;color:var(--gray);">Хук: «Картошка +62%, а меню поднять нельзя.» Конфликт: обязательные поставщики — благо или поборы? 15 минут.</p>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-time">35:00</div><div class="tl-dot"></div>
+      <div class="tl-card">
+        <div class="tl-tag red">БЛОК 3</div>
+        <div class="tl-title">Агрегаторы и доставка</div>
+        <p style="font-size:0.85rem;color:var(--gray);">Хук: «Медленное самоубийство vs быстрое.» Конфликт: агрегаторы — партнёр или паразит? 15 минут.</p>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-time">50:00</div><div class="tl-dot"></div>
+      <div class="tl-card">
+        <div class="tl-tag green">ФИНАЛ</div>
+        <div class="tl-title">Прогнозы + закрытие</div>
+        <p style="font-size:0.85rem;color:var(--gray);">«Рынок или кладбище?» По 1.5 мин каждому спикеру на финальное слово. Закрытие модератором. 10 минут.</p>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ============================== -->
+<!-- CHEAT SHEET -->
+<!-- ============================== -->
+<div class="divider"></div>
+<section style="background:var(--card);">
+<div class="container">
+  <h2 class="fade">Шпаргалка <span class="red">модератора</span></h2>
+  <p class="sub fade">Держи перед собой на столе</p>
+
+  <div class="grid-2 fade">
+    <div class="card" style="border-left:3px solid var(--orange);">
+      <h3 class="orange">Если дискуссия затухает</h3>
+      <div class="q"><span class="q-arrow">→</span><span class="q-text">«А давайте посчитаем вместе — сколько реально зарабатывает франчайзи ресторана в месяц чистыми?»</span></div>
+      <div class="q"><span class="q-arrow">→</span><span class="q-text">«Кто из вас терял деньги на франшизе? Расскажите — сколько и почему.»</span></div>
+      <div class="q"><span class="q-arrow">→</span><span class="q-text">«Поднимите руку те в зале, кто владеет ресторанной франшизой. [Обращаясь к ним:] Какой у вас фудкост?»</span></div>
+    </div>
+    <div class="card" style="border-left:3px solid var(--red);">
+      <h3 class="red">Если спикер уходит в монолог (>2 мин)</h3>
+      <div class="q"><span class="q-arrow">→</span><span class="q-text">«Подожди, дай я переброшу — [имя], ты согласен с этим?»</span></div>
+      <div class="q"><span class="q-arrow">→</span><span class="q-text">«Отличная мысль, но давай конкретнее — цифры есть?»</span></div>
+      <div class="q"><span class="q-arrow">→</span><span class="q-text">«Стоп, стоп — [имя другого спикера] явно не согласен, я вижу по лицу. Что скажешь?»</span></div>
+    </div>
+  </div>
+
+  <div class="grid-2 fade" style="margin-top:16px;">
+    <div class="card" style="border-left:3px solid var(--blue);">
+      <h3 class="blue">Провокации для остроты</h3>
+      <div class="q"><span class="q-arrow">→</span><span class="q-text">«Может ресторанным франшизам просто пора умереть? Может ритейл сделает это лучше?»</span></div>
+      <div class="q"><span class="q-arrow">→</span><span class="q-text">«Если Dodo может расти, а все жалуются — может проблема не в рынке, а в управлении?»</span></div>
+    </div>
+    <div class="card" style="border-left:3px solid var(--green);">
+      <h3 class="green">Фразы для переходов</h3>
+      <div class="q"><span class="q-arrow">→</span><span class="q-text">«Ладно, с этим разобрались. Но есть ещё одна боль...»</span></div>
+      <div class="q"><span class="q-arrow">→</span><span class="q-text">«Подождите, я хочу чтобы зал это услышал — повтори последнюю мысль.»</span></div>
+      <div class="q"><span class="q-arrow">→</span><span class="q-text">«Это мощно. Но я слышу в зале несогласие — давайте...»</span></div>
+    </div>
+  </div>
+</div>
+</section>
+
+<div class="divider"></div>
+<section>
+<div class="container">
+<div class="card fade" style="border-left:4px solid #4caf50;text-align:center;padding:32px;">
+<h3 style="color:#4caf50;">Есть пожелания или предложения по сценарию?</h3>
+<p style="font-size:1rem;color:#777;margin-top:8px;">Пишите <a href="https://t.me/frguru" style="color:#E63946;font-weight:700;">@frguru</a> в Telegram</p>
+</div>
+</div>
+</section>
+<footer style="padding:32px 0;text-align:center;">
+  <p style="font-size:0.75rem;color:var(--gray);">Сценарий · Модуль 2 · ТОК-ШОУ «Франчайзинг по-русски» · 15 марта 2026</p>
+</footer>
+
+<script>
+function toggleNav(){document.getElementById("sidebar").classList.toggle("open");document.getElementById("overlay").classList.toggle("open");document.querySelector(".nav-btn").classList.toggle("open");}
+const obs = new IntersectionObserver(e => {
+  e.forEach(el => { if(el.isIntersecting) el.target.classList.add('vis'); });
+}, { threshold: 0.12 });
+document.querySelectorAll('.fade').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
