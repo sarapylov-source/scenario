@@ -82,6 +82,10 @@ h3{font-size:1.05rem;font-weight:800;margin-bottom:6px}
 .sidebar a:hover,.sidebar a.active{color:var(--white);border-left-color:var(--red);background:rgba(230,57,70,0.05)}
 .sidebar .nav-label{font-family:'Bebas Neue',sans-serif;font-size:0.75rem;letter-spacing:3px;color:var(--red);padding:16px 16px 4px;text-transform:uppercase}
 
+.sticky-speakers{position:fixed;top:0;left:0;right:0;z-index:990;background:rgba(10,10,10,0.95);backdrop-filter:blur(10px);border-bottom:2px solid var(--red);padding:8px 24px 8px 60px;display:flex;flex-wrap:wrap;gap:6px;align-items:center;transform:translateY(-100%);transition:transform .3s ease}
+.sticky-speakers.vis{transform:translateY(0)}
+.sticky-speakers .sp{font-size:0.7rem;color:var(--gray);padding:3px 10px;background:var(--card2);border:1px solid rgba(255,255,255,0.06)}
+.sticky-speakers .sp strong{color:var(--white);font-weight:700}
 </style>
 </head>
 <body>
@@ -102,6 +106,7 @@ h3{font-size:1.05rem;font-weight:800;margin-bottom:6px}
 <div class="sidebar-overlay" id="overlay" onclick="toggleNav()"></div>
 
 <!-- HERO -->
+<div class="sticky-speakers" id="stickyBar"><span class="sp"><strong>Ярослав Осинцев</strong></span><span class="sp"><strong>Александр Долгов</strong></span><span class="sp"><strong>Артур Зарипов</strong></span><span class="sp"><strong>Олег Бачманов</strong></span></div>
 <section class="hero">
 <div class="container">
   <div class="badge">Сценарий модуля 3 · 60 минут · 15 марта 2026</div>
@@ -472,6 +477,14 @@ const obs = new IntersectionObserver(e => {
   e.forEach(el => { if(el.isIntersecting) el.target.classList.add('vis'); });
 }, { threshold: 0.12 });
 document.querySelectorAll('.fade').forEach(el => obs.observe(el));
+
+const stickyBar=document.getElementById("stickyBar");
+const heroSection=document.querySelector(".hero");
+window.addEventListener("scroll",function(){
+  if(!heroSection||!stickyBar)return;
+  if(heroSection.getBoundingClientRect().bottom<0){stickyBar.classList.add("vis")}
+  else{stickyBar.classList.remove("vis")}
+});
 </script>
 </body>
 </html>
